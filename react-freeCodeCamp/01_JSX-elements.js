@@ -9,6 +9,8 @@ However, because JSX is not valid JavaScript, JSX code must be compiled into Jav
 
 It's worth noting that under the hood the challenges are calling ReactDOM.render(JSX, document.getElementById('root')). This function call is what places your JSX into React's own lightweight representation of the DOM. React then uses snapshots of its own DOM to optimize updating only specific parts of the actual DOM.
 
+-------------------------------
+
 Instructions: The current code uses JSX to assign a div element to the constant JSX. Replace the div with an h1 element and add the text Hello JSX! inside it. */
 
 const JSX = <h1>Helo JSX!</h1>;
@@ -37,10 +39,11 @@ Invalid JSX:
 
 <p>Paragraph One</p>
 <p>Paragraph Two</p>
-<p>Paragraph Three</p> */
+<p>Paragraph Three</p>
 
+-------------------------------
 
-/* Exercise: Define a new constant JSX that renders a div which contains the following elements in order:
+Exercise: Define a new constant JSX that renders a div which contains the following elements in order:
 
 An h1, a p, and an unordered list that contains three li items. You can include any text you want within each element.
 
@@ -62,9 +65,11 @@ const JSX2 = <div>
 JSX is a syntax that gets compiled into valid JavaScript. Sometimes, for readability, you might need to add comments to your code. Like most programming languages, JSX has its own way to do this.*/
 
 //To put comments inside JSX, you use the syntax {/* */} to wrap around the comment text.
+/*
 
+-------------------------------
 
-// Exercise: The code editor has a JSX element similar to what you created in the last challenge. Add a comment somewhere within the provided div element, without modifying the existing h1 or p elements.
+Exercise: The code editor has a JSX element similar to what you created in the last challenge. Add a comment somewhere within the provided div element, without modifying the existing h1 or p elements.*/
 
 const JSX = (
     <div>
