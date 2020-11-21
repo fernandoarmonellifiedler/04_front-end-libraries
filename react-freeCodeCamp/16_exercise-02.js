@@ -12,11 +12,27 @@ class Counter extends React.Component {
             count: 0
         };
         // Change code below this line
-
+        this.increment = this.increment.bind(this);
+        this.decrement = this.decrement.bind(this);
+        this.reset = this.reset.bind(this);
         // Change code above this line
     }
     // Change code below this line
-
+    increment() {
+        this.setState(state => ({
+            count: state.count + 1
+        }))
+    };
+    decrement() {
+        this.setState(state => ({
+            count: state.count - 1
+        }))
+    };
+    reset() {
+        this.setState(state => ({
+            count: 0
+        }))
+    };
     // Change code above this line
     render() {
         return (
