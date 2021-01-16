@@ -1,4 +1,4 @@
-/* from https://create-react-app.dev/
+/* 
 
 Getting Started
 Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
