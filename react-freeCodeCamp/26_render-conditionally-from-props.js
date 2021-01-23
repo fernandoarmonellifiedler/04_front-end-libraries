@@ -11,3 +11,87 @@ Exercise: The code editor has two components that are partially defined for you:
 First, you'll need a simple expression that randomly returns a different value every time it is run. You can use Math.random(). This method returns a value between 0 (inclusive) and 1 (exclusive) each time it is called. So for 50/50 odds, use Math.random() >= .5 in your expression. Statistically speaking, this expression will return true 50% of the time, and false the other 50%. In the render method, replace null with the above expression to complete the variable declaration.
 
 Now you have an expression that you can use to make a randomized decision in the code. Next you need to implement this. Render the Results component as a child of GameOfChance, and pass in expression as a prop called fiftyFifty. In the Results component, write a ternary expression to render the h1 element with the text "You Win!" or "You Lose!" based on the fiftyFifty prop that's being passed in from GameOfChance. Finally, make sure the handleClick() method is correctly counting each turn so the user knows how many times they've played. This also serves to let the user know the component has actually updated in case they win or lose twice in a row.*/
+
+class Results extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        {/* Change code below this line */ }
+        return <h1>{this.props.fiftyFifty ? "You Win!" : "You Lose!"}</h1>;
+        {/* Change code above this line */ }
+    }
+}
+
+class GameOfChance extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            counter: 1
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+        this.setState({
+            counter: this.state.counter + 1 // Change this line
+        });
+    }
+    render() {
+        const expression = Math.random() >= .5; // Change this line
+        return (
+            <div>
+                <button onClick={this.handleClick}>Play Again</button>
+                {/* Change code below this line */}
+                <Results fiftyFifty={expression} />
+                {/* Change code above this line */}
+                <p>{'Turn: ' + this.state.counter}</p>
+            </div>
+        );
+    }
+}
+
+// ----------------------------
+/* Change Inline CSS Conditionally Based on Component State
+
+At this point, you've seen several applications of conditional rendering and the use of inline styles. Here's one more example that combines both of these topics. You can also render CSS conditionally based on the state of a React component. To do this, you check for a condition, and if that condition is met, you modify the styles object that's assigned to the JSX elements in the render method.
+
+This paradigm is important to understand because it is a dramatic shift from the more traditional approach of applying styles by modifying DOM elements directly (which is very common with jQuery, for example). In that approach, you must keep track of when elements change and also handle the actual manipulation directly. It can become difficult to keep track of changes, potentially making your UI unpredictable. When you set a style object based on a condition, you describe how the UI should look as a function of the application's state. There is a clear flow of information that only moves in one direction. This is the preferred method when writing applications with React.
+
+-------------------------------
+
+Exercise: The code editor has a simple controlled input component with a styled border. You want to style this border red if the user types more than 15 characters of text in the input box. Add a condition to check for this and, if the condition is valid, set the input border style to 3px solid red. You can try it out by entering text in the input.*/
+
+class GateKeeper extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            input: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event) {
+        this.setState({ input: event.target.value })
+    }
+    render() {
+        let inputStyle = {
+            border: '1px solid black'
+        };
+        // Change code below this line
+        if (this.state.input.length > 15) {
+            inputStyle = {
+                border: '3px solid red'
+            };
+        }
+        // Change code above this line
+        return (
+            <div>
+                <h3>Don't Type Too Much:</h3>
+                <input
+                    type="text"
+                    style={inputStyle}
+                    value={this.state.input}
+                    onChange={this.handleChange} />
+            </div>
+        );
+    }
+};
