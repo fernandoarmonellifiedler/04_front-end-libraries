@@ -40,4 +40,7 @@ NPM:
 (install package globally (access anywhere) SUDO)
 - npm install <package name> --save-dev
 (use it only in development)
+
+shortcut to comments:
+Ctrl + ;
 */
