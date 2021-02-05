@@ -24,13 +24,14 @@ const UseStateCounter = () => {
         <button className='btn' onClick={() => setValue(value - 1)}>
           decrease
         </button>
-        <button className='btn' onClick={reset}>
+        <button className='btn' onClick={() => setValue(reset)}>
           reset
         </button>
         <button className='btn' onClick={() => setValue(value + 1)}>
           increase
         </button>
       </section>
+
       <section style={{ margin: '4rem 0' }}>
         <h2>more complex counter</h2>
         <h1>{value}</h1>
