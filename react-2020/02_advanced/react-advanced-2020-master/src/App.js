@@ -1,5 +1,5 @@
 import React from 'react';
-import Setup from './tutorial/3-conditional-rendering/1-multiple-returns';
+import Setup from './tutorial/4-forms/2-multiple-inputs';
 
 function App() {
   return (
