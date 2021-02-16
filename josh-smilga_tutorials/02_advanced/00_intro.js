@@ -8,7 +8,7 @@
 - useRef
 - useReducer
 - Prop Drilling
-- COntext API / useContext
+- Context API / useContext
 
 ------------------------------
 Hooks
