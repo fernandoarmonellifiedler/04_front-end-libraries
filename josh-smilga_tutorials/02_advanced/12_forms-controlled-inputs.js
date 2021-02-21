@@ -8,7 +8,7 @@
 
 Starting with form:
 - we create a form with two inputs: name and email.
-- when it comes to React we have two options: either we can add onSubmit on the form or on the onClick in the button. we´re goint by the second one
+- when it comes to React we have two options: either we can add onSubmit on the form or on the onClick in the button. we´re going by the second one
 
 - in the form or in the button we add onSubmit={handleSubmit} that will show for now a console.log. Since the browser will refresh the page on every submit we have in React the preventDefault method */
 
