@@ -18,9 +18,9 @@ The handler
 
 - we´re gonna run the handleChange regardless of the input and get those values depending on what input i´m changing
 - also we want to affect the person
-- we want name and value properties to work with in thehandleChange
+- we want name and value properties to work with in the handleChange
 
-onst name = e.target.name;
+const name = e.target.name;
 const value = e.target.value;
 
 - now that we know name and value we can use the dinamyc object properties */
