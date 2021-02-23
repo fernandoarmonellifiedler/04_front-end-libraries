@@ -5,7 +5,7 @@
 - in the reducer function we handle with that action
 note: always return some kind of state or this functionality it wont work
 
-- so we have state and action. we can go with the conditional now and check wheter we are dispatching the action with the type of  TESTING
+- so we have state and action. we can go with the conditional now and check wheter we are dispatching the action with the type of TESTING
 - basically, we set up our dispatch function with our action object where we set up type property with the value of 'TESTING'. in reducer we catch them.
 - note that we´re not directly affecting state values.
 
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
   return state;
 };
 
-// - we can throw an error if the action that we pass doe not match TESTING type
+// - we can throw an error if the action that we pass does not match TESTING type
 throw new Error('no matching action type');
 
 /*
