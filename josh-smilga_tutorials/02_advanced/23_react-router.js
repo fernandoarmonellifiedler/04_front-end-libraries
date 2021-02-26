@@ -1,6 +1,8 @@
 /* React Router - Intro
-- when we talk about js frameworks we´renot talking about traditional html pages. instead, we have single-page apps with multiple paths that you can load without refreshing the entire url
+- when we talk about js frameworks we´re not talking about traditional html pages. instead, we have single-page apps with multiple paths that you can load without refreshing the entire url
 - react doesn´t have built-in routing so we´re using the react router package
+
+npm i react-router-dom
 
 - we import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 - when working with react-router you usually wrap your whole app.in this particular case we wrap our index js */
@@ -103,16 +105,16 @@ const Navbar = () => {
 React Router - URL params and Placeholder
 - how we can deal with the List?
 - we´ll add some kind of placeholder page were we go when we click on one of the list items
-- essencially we don´t have to create four different pages for each item. we can display the data of the selected list inside the placeholder by grabbing the item id or some indentifier
+- essencially we don´t have to create four different pages for each item. we can display the data of the selected list inside the placeholder by grabbing the item id or some identifier
 - in the index.js we have the Person component so we´ll add Person component in the Route component also but the setup will be different.
   - it will have the URL parameter (/:id, /:name, etc) in the path. the first part is up to you, if you want to go with "/person/:id" or simply "/:id" for example
   - we don´t place the component in the Route component but inside its children prop.
-- so, we´ll always show a Person component. the difference is that in the Person component we´ll grab that id andfetchthat data
+- so, we´ll always show a Person component. the difference is that in the Person component we´ll grab that id and fetch that data
 
   <Route path='/person/:id' children={<Person />}></Route>
 
 - in the people array (People component file). right next to heading 4 we add a Link
-- since we are navigating in each item of thelist we have access to the id so we have to set the 'to' prop dinamically inside the Link. we use curly braces and template strings
+- since we are navigating in each item of the list we have access to the id so we have to set the 'to' prop dinamically inside the Link. we use curly braces and template strings
 - Now, every time we open a person link we are still opening the person page with the difference of the id in the url
 */
 
