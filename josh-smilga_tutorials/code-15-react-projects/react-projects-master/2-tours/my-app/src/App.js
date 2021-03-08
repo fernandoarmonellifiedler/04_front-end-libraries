@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Loading from './Loading'
-import Tours from './Tours'
-// ATTENTION!!!!!!!!!!
-// I SWITCHED TO PERMANENT DOMAIN
-const url = 'https://course-api.com/react-tours-project'
+import React, { useState, useEffect } from 'react';
+import Loading from './Loading';
+import Tours from './Tours';
+
+const url = 'https://course-api.com/react-tours-project';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -11,9 +10,9 @@ function App() {
 
   // remove button 'not interesed'
   const removeTour = (id) => {
-    const newTours = tours.filter(tour => tour.id !== id);
+    const newTours = tours.filter((tour) => tour.id !== id);
     setTours(newTours);
-  }
+  };
 
   // use the fetch api
   const fetchTours = async () => {
@@ -28,11 +27,11 @@ function App() {
       setLoading(false);
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchTours();
-  }, [])
+  }, []);
 
   // have a return for loading and one for not loading
   if (loading) {
@@ -44,14 +43,16 @@ function App() {
   }
   // return in case there are not more tours
   if (tours.length === 0) {
-    return <main>
-      <div className='title'>
-        <h2>no tours left</h2>
-        <button className='btn' onClick={fetchTours}>
-          refresh
-        </button>
-      </div>
-    </main>
+    return (
+      <main>
+        <div className='title'>
+          <h2>no tours left</h2>
+          <button className='btn' onClick={fetchTours}>
+            refresh
+          </button>
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -61,4 +62,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
