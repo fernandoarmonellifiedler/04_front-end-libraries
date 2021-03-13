@@ -1,6 +1,9 @@
-/* Introduction to the Redux Challenges
+/* Redux
+As applications grow in size and scope, managing shared data becomes much more difficult. Redux is defined as a "predictable state container for JavaScript apps" that helps ensure your apps work predictably, and are easier to test.
 
-Redux is a predictable state container for JavaScript apps. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. While you can use Redux with any view library, it's introduced here before being combined with React.
+While you can use Redux with any view library, we introduce Redux here before combining it with React in the next set of courses.
+
+In this course, you'll learn the fundamentals of Redux stores, actions, reducers and middleware to manage data throughout your application.
 
 Upcoming Lessons:
 
