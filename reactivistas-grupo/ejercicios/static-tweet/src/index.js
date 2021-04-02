@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 function Tweet({ tweet }) {
   return (
@@ -20,6 +21,20 @@ function Tweet({ tweet }) {
       </div>
     </div>
   );
+}
+
+Tweet.propTypes = {
+  tweet: PropTypes.shape({
+    gravatar: PropTypes.string,
+    author: PropTypes.PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      handle: PropTypes.string.isRequired
+    }).isRequired,
+    timestamp: PropTypes.string,
+    message: PropTypes.string,
+    retweets: PropTypes.number,
+    likes: PropTypes.number
+  }).isRequired
 }
 
 function Avatar({ hash }) {
@@ -90,6 +105,3 @@ const testTweet = {
 };
 
 ReactDOM.render(<Tweet tweet={testTweet} />, document.querySelector('#root'));
-
-
-// page 70
