@@ -1,0 +1,45 @@
+.card {
+  background-color: rgb(47, 83, 202);
+  width: 300px;
+  color: white;
+  text-align: center;
+  /* margin: 0 auto; */
+  border-radius: 1rem;
+  padding: 0 1rem;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.bank {
+  padding-top: 1rem;
+  font-size: 28px;
+}
+
+.number {
+  margin-top: 3rem;
+  letter-spacing: 5px;
+  font-size: 22px;
+}
+
+.expText {
+  font-size: 10px;
+  
+}
+
+.firstNums {
+  font-size: 12px;
+  margin-top: -1rem;
+  margin-left: .4rem
+}
+
+.name {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding-bottom: 1rem;
+}
