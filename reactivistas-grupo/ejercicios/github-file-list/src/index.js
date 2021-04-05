@@ -1,41 +1,60 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 
 const FileList = ({ files }) => (
-    <table className='file-list'>
-      <tbody>
+  <div className='container-sm container-tabla'>
+    <table className='table table-dark table-striped table-hover table-bordered'>
+      <tbody className='flex'>
         {files.map((file) => (
-          <tr className='file-list-item' key={file.id}>
-            <td className='filename'>{file.name}</td>
-            <td className='commit'>{file.latestCommit.message}</td>
-            <td className='time'>{file.updated_at}</td>
-          </tr>
+          <FileListItem file={file} />
         ))}
       </tbody>
     </table>
-  );
+  </div>
+);
 
 FileList.propTypes = {
   files: PropTypes.array,
 };
 
-// function FileListItem() {
-//   return (
-//     <div>
-//       <ul>
-//         <li>
-//           <i>icon</i>
-//           <p>FileName</p>
-//           <p>CommitMessage</p>
-//           <p>Time</p>
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// }
+function FileListItem({ file }) {
+  return (
+    <tr className='fila' key={file.id}>
+      <FileName name={file.name} type={file.type} />
+      <FileCommit latestCommit={file.latestCommit.message} />
+      <FileTime updated_at={file.updated_at} />
+    </tr>
+  );
+}
 
+function FileName({ name, type }) {
+  return (
+    <td className='filename'>
+      <span>
+        {type == 'folder' && <FontAwesomeIcon icon={faFolder} />}
+        {type == 'file' && <FontAwesomeIcon icon={faFile} />}
+      </span>
+      <p className='name'>{name}</p>
+    </td>
+  );
+}
+
+function FileCommit({ latestCommit }) {
+  return <td className='commit'>{latestCommit}</td>;
+}
+
+function FileTime({ updated_at }) {
+  const timeString = moment(updated_at).fromNow();
+  return <td className='time'>{timeString}</td>;
+}
+
+// database
 const testFiles = [
   {
     id: 1,
@@ -70,3 +89,5 @@ ReactDOM.render(
   <FileList files={testFiles} />,
   document.querySelector('#root')
 );
+
+// chackra tailwind
