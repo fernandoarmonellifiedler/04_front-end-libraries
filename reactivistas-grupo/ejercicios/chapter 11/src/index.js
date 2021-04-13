@@ -1,15 +1,10 @@
-function handleAction(event) {
-  console.log('Child did:', event)
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class CountingParent extends React.Component {
+  render() {
+    return <div>a</div>;
+  }
 }
 
-function Parent() {
-  return (
-    <Child onAction={handleAction} />
-  )
-}
-
-function Child({onAction}) {
-  return (
-    <button onClick={onAction}>Click Me!</button>
-  )
-}
+ReactDOM.render(<Page />, document.querySelector('#root'));
