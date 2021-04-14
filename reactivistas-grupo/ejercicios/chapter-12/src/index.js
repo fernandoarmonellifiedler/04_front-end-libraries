@@ -1,80 +1,71 @@
-// fetch posts from Reddit
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
 
-class ErrorCatcher extends React.Component {
-  state = { error: null };
-  
-  componentDidCatch(error, info) {
-    this.setState({ error: info.componentStack });
+const calculate = (name, tempValue) => {
+  if (name === 'celsius') {
+    return (tempValue - 32) * (5 / 9);
   }
-
-  render() {
-    if (this.state.error) {
-      return <div>An error ocurred: {this.state.error}</div>;
-    }
-
-    return this.props.children;
+  if (name === 'fahrenheit') {
+    return tempValue * (9 / 5) + 32;
   }
-}
+};
 
-class Reddit extends React.Component {
-  state = {
-    posts: null,
+// Parent
+function Converter() {
+  const [temp, setTemp] = useState({
+    celsius: '',
+    fahrenheit: '',
+  });
+
+  // useEffect(() => {
+  //   setTemp({
+  //     ...temp, [name]: e.target.value
+  //   })
+  // },[temp.celsius])
+
+  // useEffect(() => {
+  //   ...temp,
+  // },[temp.fahrenheit])
+
+  const handleChange = (e, name, otherName,value) => {
+    setTemp({ [name]: e.target.value, [otherName]: value });
   };
 
-  componentDidMount() {
-    axios
-      .get(`https://www.reddit.com/r/${this.props.subreddit}.json`)
-      // .then((res) => {
-      //   if (res.ok) {
-      //     return res.json();
-      //   }
-      //   throw new Error('Request failed');
-      // })
-      .then((res) => {
-        // if (res.status === 200) {
-          const posts = res.data.data.children.map((obj) => obj.data);
-          this.setState({ posts });
-        // }
-        // throw new Error('Request failed');
-      })
-      .catch((error) => {
-        // console.log(error.message);
-        this.setState({
-          error: true,
-        });
-      });
-  }
-
-  render() {
-    if (this.state.error) {
-      throw new Error('There was a problem')
-    }
-
-    const { posts } = this.state;
-
-    return (
-      <div>
-        <h1>{`/r/${this.props.subreddit}`}</h1>
-        {posts ? (
-          <ul>
-            {posts.map((post) => (
-              <li key={post.id}>{post.title}</li>
-            ))}
-          </ul>
-        ) : (
-          <h1>Loading...</h1>
-        )}
-      </div>
-    );
-  }
+  return (
+    <form>
+      <Temperature
+        name={'celsius'}
+        otherName={'fahrenheit'}
+        value={temp.fahrenheit}
+        otherValue={temp.celsius}
+        handleChange={handleChange}
+      />
+      <Temperature
+        name={'fahrenheit'}
+        otherName={'celsius'}
+        value={temp.celsius}
+        otherValue={temp.fahrenheit}
+        handleChange={handleChange}
+      />
+    </form>
+  );
 }
 
-ReactDOM.render(
-  <ErrorCatcher>
-    <Reddit subreddit='reacstjs' />
-  </ErrorCatcher>,
-  document.querySelector('#root')
-);
+// Children
+function Temperature({ name, value, handleChange, otherValue, otherName }) {
+  let result = value ? Math.round(calculate(name, value)) : otherValue;
+
+  return (
+    <>
+      <label htmlFor='temp'>{name}</label>
+      <input
+        type='text'
+        id='temp'
+        onChange={(e) => handleChange(e, name, otherName, value)}
+        value={result}
+      />
+    </>
+  );
+}
+
+ReactDOM.render(<Converter />, document.querySelector('#root'));
