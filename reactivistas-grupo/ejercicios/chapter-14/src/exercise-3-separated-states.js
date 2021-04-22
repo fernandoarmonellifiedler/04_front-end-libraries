@@ -18,34 +18,47 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 function AudioControls() {
-  const [controlls, setControlls] = useState({
-    volume: 50,
-    bass: 50,
-    mid: 50,
-    treble: 50,
-  });
+  const [volume, setVolume] = useState(50);
+  const [bass, setBass] = useState(50);
+  const [mid, setMid] = useState(50);
+  const [treble, setTreble] = useState(50);
+  
 
   const handleClick = (e) => {
     let stateName = e.target.value;
     let sumOrMin = e.target.textContent;
 
     if (sumOrMin === '+') {
-      setControlls({ ...controlls, [stateName]: controlls[stateName] + 1 });
+      if (stateName === 'VOLUME') setVolume((volume) => volume + 1);
+      if (stateName === 'BASS') setBass((bass) => bass + 1);
+      if (stateName === 'MID') setMid((mid) => mid + 1);
+      if (stateName === 'TREBLE') setTreble((treble) => treble + 1);
     }
     if (sumOrMin === '-') {
-      setControlls({ ...controlls, [stateName]: controlls[stateName] - 1 });
+      if (stateName === 'VOLUME') setVolume((volume) => volume - 1);
+      if (stateName === 'BASS') setBass((bass) => bass - 1);
+      if (stateName === 'MID') setMid((mid) => mid - 1);
+      if (stateName === 'TREBLE') setTreble((treble) => treble - 1);
     }
   };
 
   return (
     <>
-      {Object.keys(controlls).map((item, index) => (
+      {['VOLUME', 'BASS', 'MID', 'TREBLE'].map((item, index) => (
         <div key={index} style={{ textAlign: 'center' }}>
           <p>{item}</p>
           <button value={item} onClick={handleClick}>
             -
           </button>{' '}
-          {controlls[item]}{' '}
+          {index === 0
+            ? volume
+            : index === 1
+            ? bass
+            : index === 2
+            ? mid
+            : index === 3
+            ? treble
+            : ''}{' '}
           <button value={item} onClick={handleClick}>
             +
           </button>
