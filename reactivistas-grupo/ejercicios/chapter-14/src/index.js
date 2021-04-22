@@ -22,66 +22,53 @@ function AudioControls() {
   const [bass, setBass] = useState(50);
   const [mid, setMid] = useState(50);
   const [treble, setTreble] = useState(50);
+  const [controlls, setControlls] = useState({
+    volume: 50,
+    bass: 50,
+    mid: 50,
+    treble: 50,
+  });
 
-  const handleAdd = (e) => {
-    console.log(e.target.textContent);
+  const handleClick = (e) => {
     let stateName = e.target.value;
-    if (stateName === 'volume') {setVolume((volume) => volume + 1)};
-    if (stateName === 'bass') setBass((bass) => bass + 1);
-    if (stateName === 'mid') setMid((mid) => mid + 1);
-    if (stateName === 'treble') setTreble((treble) => treble + 1);
-  };
+    let sumOrMin = e.target.textContent;
 
-  const handleMin = (e) => {
-    let stateName = e.target.value;
-    if (stateName === 'volume') setVolume((volume) => volume - 1);
-    if (stateName === 'bass') setBass((bass) => bass - 1);
-    if (stateName === 'mid') setMid((mid) => mid - 1);
-    if (stateName === 'treble') setTreble((treble) => treble - 1);
+    if (sumOrMin === '+') {
+      if (stateName === 'VOLUME') setVolume((volume) => volume + 1);
+      if (stateName === 'BASS') setBass((bass) => bass + 1);
+      if (stateName === 'MID') setMid((mid) => mid + 1);
+      if (stateName === 'TREBLE') setTreble((treble) => treble + 1);
+    }
+    if (sumOrMin === '-') {
+      if (stateName === 'VOLUME') setVolume((volume) => volume - 1);
+      if (stateName === 'BASS') setBass((bass) => bass - 1);
+      if (stateName === 'MID') setMid((mid) => mid - 1);
+      if (stateName === 'TREBLE') setTreble((treble) => treble - 1);
+    }
   };
 
   return (
     <>
-      <div>
-        <p>VOLUME</p>
-        <button value='volume' onClick={handleMin}>
-          -
-        </button>{' '}
-        {volume}{' '}
-        <button value='volume' onClick={handleAdd} >
-          +
-        </button>
-      </div>
-      <div>
-        <p>BASS</p>
-        <button value='bass' onClick={handleMin}>
-          -
-        </button>{' '}
-        {bass}{' '}
-        <button value='bass' onClick={handleAdd}>
-          +
-        </button>
-      </div>
-      <div>
-        <p>MID</p>
-        <button value='mid' onClick={handleMin}>
-          -
-        </button>{' '}
-        {mid}{' '}
-        <button value='mid' onClick={handleAdd}>
-          +
-        </button>
-      </div>
-      <div>
-        <p>TREBLE</p>
-        <button value='treble' onClick={handleMin}>
-          -
-        </button>{' '}
-        {treble}{' '}
-        <button value='treble' onClick={handleAdd}>
-          +
-        </button>
-      </div>
+      {['VOLUME', 'BASS', 'MID', 'TREBLE'].map((item, index) => (
+        <div key={index} style={{ textAlign: 'center' }}>
+          <p>{item}</p>
+          <button value={item} onClick={handleClick}>
+            -
+          </button>{' '}
+          {index === 0
+            ? volume
+            : index === 1
+            ? bass
+            : index === 2
+            ? mid
+            : index === 3
+            ? treble
+            : ''}{' '}
+          <button value={item} onClick={handleClick}>
+            +
+          </button>
+        </div>
+      ))}
     </>
   );
 }
