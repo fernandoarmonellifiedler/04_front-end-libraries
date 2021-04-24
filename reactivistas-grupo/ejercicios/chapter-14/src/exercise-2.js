@@ -8,7 +8,6 @@ function RandomList() {
 
   const handleClick = () => {
     let newNum = Math.random() * 100;
-
     setRandomNums([...randomNums, newNum]);
   };
 

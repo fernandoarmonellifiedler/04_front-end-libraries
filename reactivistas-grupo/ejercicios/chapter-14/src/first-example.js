@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 // Function Component
@@ -17,27 +17,30 @@ function OneTimeButton({ onClick }) {
   );
 }
 
+// Class Component
+class OneTimeButton2 extends React.Component {
+  state = {
+    clicked: false,
+  };
+
+  handleClick = () => {
+    this.props.onClick();
+    this.setState({ clicked: true });
+  };
+
+  render() {
+    return (
+      <button onClick={this.handleClick} disabled={this.state.clicked}>
+        You Can Only Click Me Once!
+      </button>
+    );
+  }
+}
+
 ReactDOM.render(
-  <OneTimeButton onClick={() => alert('hi')} />,
+  <>
+    <OneTimeButton onClick={() => alert('hi')} />
+    <OneTimeButton2 onClick={() => alert('hi')} />
+  </>,
   document.getElementById('root')
 );
-
-// Class Component
-// class OneTimeButton extends React.Component {
-//   state = {
-//     clicked: false,
-//   };
-
-//   handleClick = () => {
-//     this.props.onClick();
-//     this.setState({ clicked: true });
-//   };
-
-//   render() {
-//     return (
-//       <button onClick={this.handleClick} disabled={this.state.clicked}>
-//         You Can Only Click Me Once!
-//       </button>
-//     );
-//   }
-// }
