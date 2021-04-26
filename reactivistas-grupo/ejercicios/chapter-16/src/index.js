@@ -1,21 +1,115 @@
-// Create an app that involves radio buttons, a checkbox, aselectdropdown, and a textarea. You canmodel it after this form for ordering a pizza, or make up something on your own.
-
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
-const OtherHelloApp = () => {
+// controlled input
+const InputExample = () => {
+  const [text, setText] = useState('');
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
 
   return (
-    <div>
-    
+    <div className='input-content'>
+      <label htmlFor='text'>Controlled Input</label>
+      <input type='text' id='text' value={text} onChange={handleChange} />
+      <p>Estado: {text}</p>
     </div>
   );
 };
 
-ReactDOM.render(<OtherHelloApp/>, document.getElementById('root'));
+// Tricky input
+const TrickyInput = () => {
+  const [text, setText] = useState('try typing something');
+  const handleChange = (event) => {
+    setText('haha nope');
+  };
+  return (
+    <div className='input-content'>
+      <label htmlFor='text'>Tricky Input</label>
+      <input type='text' id='text' value={text} onChange={handleChange} />
+      <p>Estado: {text}</p>
+    </div>
+  );
+};
 
-/* 
-Though we haven’t explicitly talked about other input types likeselect,radio,checkbox, andtextarea, they work much the same as the plain oldtextinputs you’ve used so far.Theselectandtextareaboth use the familiarvalueandonChangeprops.  Theradioandcheckboxdiffer a bit. Checkboxes and radio buttons both usecheckedinstead ofvalueto de-termine if they’re active or not, so instead of readingevent.target.valueyou’ll need to useevent.target.checked.With radio buttons, it’s often helpful to give them a staticvalueprop, and store that value in stateto keep track of which radio button is selected. Then, you can set theircheckedprop based on thatvalue. Here’s a snippet of code to show you what I mean:setLetter=(event)=>{this.setState({letter:event.target.value});}render() {const{ letter }=this.state;return(<form><inputtype="radio"value="a"checked={letter==='a'}onChange={this.setLetter}/><inputtype="radio"value="b"checked={letter==='b'}onChange={this.setLetter}162
-Contents/><inputtype="radio"value="c"checked={letter==='c'}onChange={this.setLetter}/></form>);}
+// No numbers input
+const NoNumbersInput = () => {
+  const [text, setText] = useState('No numbers!');
+  const handleChange = (event) => {
+    let text = event.target.value;
+    setText(text.replace(/[0-9]/g, ''));
+  };
+  return (
+    <div className='input-content'>
+      <label htmlFor='text'>NoNumbersInput</label>
+      <input type='text' id='text' value={text} onChange={handleChange} />
+      <p>Estado: {text}</p>
+    </div>
+  );
+};
 
-*/
+// --------------------------------------------
+// uncontrolled input
+const EasyInput = () => {
+  return (
+    <div className='input-content'>
+      <label htmlFor='text'>Uncontrolled Input</label>
+      <input type='text' id='text' defaultValue='default value' /><p>Sin estado</p>
+    </div>
+  );
+};
+
+// get the value: onChange
+const OnChangeInput = () => {
+  const [text, setText] = useState('');
+  return (
+    <div className='input-content'>
+      <label htmlFor='text'>Uncontrolled Input</label>
+      <input
+        type='text'
+        id='text'
+        onChange={(e) => setText(e.target.value)}
+        value={text + '!'}
+      />
+      <p>Estado: {text}</p>
+    </div>
+  );
+};
+
+// get the value: useRef
+const RefInput = () => {
+  const input = useRef();
+  console.log(input);
+
+  const showValue = () => {
+    alert(`Input contains: ${input.current.value}`);
+  };
+  return (
+    <div className='input-content'>
+    <label htmlFor='text'>useRef</label>
+      <input type='text' ref={input} />
+      <button onClick={showValue}>Alert the Value!</button>
+      <p>Sin estado.</p>
+    </div>
+  );
+};
+
+ReactDOM.render(
+  <>
+    <div className='controlled-inputs'>
+      <h1>Controlled Inputs</h1>
+      <InputExample />
+      <TrickyInput />
+      <NoNumbersInput />
+    </div>
+    <div className='uncontrolled-inputs'>
+      <h1>Uncontrolled Inputs</h1>
+      <EasyInput />
+      <OnChangeInput />
+      <RefInput/>
+    </div>
+  </>,
+  document.getElementById('root')
+);

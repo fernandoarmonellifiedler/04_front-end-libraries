@@ -1,0 +1,54 @@
+#root {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+div {
+  margin: 0 auto;
+  padding: .5rem;
+}
+
+.input-content {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  width: 90%;
+}
+
+.controlled-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(188, 255, 233);
+}
+
+.uncontrolled-inputs {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 254, 181);
+}
+
+label {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+input {
+  width: 10rem;
+  margin: .5rem auto;
+}
+
+p {
+  margin-top: 0;
+}
+
+button {
+  margin: 0 auto;
+  margin-bottom: .5rem;
+  width: 10rem;
+}
