@@ -30,4 +30,4 @@ Como funciona:
 - cuenta como "side effect" por lo que no puede cambiar durante un render (solo dentro de un useEffect hook)
 
 (Instancias)
-- Un componente puede tener varias instancias en pantalla con sus propiedas y estado particulares
+- Un componente puede tener varias instancias en pantalla con sus propiedad y estado particulares

@@ -22,9 +22,11 @@ const InputExample = () => {
 // Tricky input
 const TrickyInput = () => {
   const [text, setText] = useState('try typing something');
+
   const handleChange = (event) => {
     setText('haha nope');
   };
+
   return (
     <div className='input-content'>
       <label htmlFor='text'>Tricky Input</label>
@@ -56,7 +58,8 @@ const EasyInput = () => {
   return (
     <div className='input-content'>
       <label htmlFor='text'>Uncontrolled Input</label>
-      <input type='text' id='text' defaultValue='default value' /><p>Sin estado</p>
+      <input type='text' id='text' defaultValue='default value' />
+      <p>Sin estado</p>
     </div>
   );
 };
@@ -64,6 +67,7 @@ const EasyInput = () => {
 // get the value: onChange
 const OnChangeInput = () => {
   const [text, setText] = useState('');
+
   return (
     <div className='input-content'>
       <label htmlFor='text'>Uncontrolled Input</label>
@@ -71,7 +75,7 @@ const OnChangeInput = () => {
         type='text'
         id='text'
         onChange={(e) => setText(e.target.value)}
-        value={text + '!'}
+        // value={text}
       />
       <p>Estado: {text}</p>
     </div>
@@ -83,13 +87,19 @@ const RefInput = () => {
   const input = useRef();
   console.log(input);
 
+  const handleChange = (e) => {
+    console.log(e)
+    console.log(input.current.value)
+  }
+
   const showValue = () => {
     alert(`Input contains: ${input.current.value}`);
   };
   return (
     <div className='input-content'>
-    <label htmlFor='text'>useRef</label>
+      <label htmlFor='text'>useRef</label>
       <input type='text' ref={input} />
+      <input type='text' onChange={handleChange} />
       <button onClick={showValue}>Alert the Value!</button>
       <p>Sin estado.</p>
     </div>
@@ -108,7 +118,7 @@ ReactDOM.render(
       <h1>Uncontrolled Inputs</h1>
       <EasyInput />
       <OnChangeInput />
-      <RefInput/>
+      <RefInput />
     </div>
   </>,
   document.getElementById('root')
