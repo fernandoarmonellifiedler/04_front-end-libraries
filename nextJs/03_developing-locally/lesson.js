@@ -32,4 +32,3 @@ Otro abordaje (JavaScript Standard Style):
 https://standardjs.com/
 
 */
-
