@@ -5,5 +5,5 @@
             "@/components/*": ["components/*"],
             "@/styles/*": ["styles/*"]
         }
-    }
+    },
 }
